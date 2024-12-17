@@ -6,8 +6,8 @@ class Command:
     def interpret(self, command_str, file_struct, current):
         pass
     def __str__(self):
-        return (f"This is a base command.\n This is just a placeholder.\n If you are seeing this, 
-        then this command has not been fully implemented")
+        return (f"This is a base command.\n This is just a placeholder.\n If you are seeing this," 
+        +f"then this command has not been fully implemented")
 
 class MakeDirectory(Command):
     def __init__(self, alias, sub_commands):
@@ -26,7 +26,7 @@ class MakeDirectory(Command):
         if command_str[0] not in self.alias:
             raise ValueError("Command is not here!")
         for line in command_str[1:]:
-            if line[0] == '-':
+            if line[0] == '-' and len(self.subcommands) != 0:
                 if line not in self.subcommands:
                     raise TypeError("Command is formatted wrong! " + line + " sub command does not exsist!")
             else:
@@ -41,14 +41,24 @@ class MakeDirectory(Command):
                     print("Invalid command input!")
         return new_struct, new_key_path
 
-def run_command(commands_list, command_str):
+def run_command(commands_list, command_str, file_struct, current):
     new_file_struct = {}
-    new_current_dir = {}
+    new_current_dir = current
     for command in commands_list:
         try:
-            new_file_struct, new_current_dir = command.interpret(command_str, file_struct, current_direct)
+            new_file_struct, new_key_path = command.interpret(command_str, file_struct, current)
         except ValueError as err:
             continue
         except TypeError as err:
             print(err)
     return new_file_struct, new_current_dir
+
+if __name__ == "__main__":
+
+    commands = [MakeDirectory(["makedir, mkdir, mk"], [])]
+    user_in = ""
+    while True:
+        user_in = input("Enter command: ").split()
+        if user_in == "q":
+            break
+        run_command(commands, user_in)
