@@ -54,11 +54,13 @@ def run_command(commands_list, command_str, file_struct, current):
     return new_file_struct, new_current_dir
 
 if __name__ == "__main__":
-
-    commands = [MakeDirectory(["makedir, mkdir, mk"], [])]
+    file_sys = {}
+    file_key_path = []
+    commands = [MakeDirectory(["makedir", "mkdir", "mk"], [])]
     user_in = ""
     while True:
         user_in = input("Enter command: ").split()
-        if user_in == "q":
+        if user_in[0] == "q":
             break
-        run_command(commands, user_in)
+        run_command(commands, user_in, file_sys, file_key_path)
+        print(file_sys)
