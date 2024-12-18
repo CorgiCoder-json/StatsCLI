@@ -18,17 +18,17 @@ class ChangeDirectory(Command):
             try:
                 if line == "<-":
                     current.pop()
-                    copied_keys = copy.deepcopy(file_path_keys)
-                    current_dir = "/" + "/".join(file_path_keys)
-                    current_contents = self.return_dir(file_contents, copied_keys) if len(file_path_keys) != 0 else file_contents
+                    new_path = copy.deepcopy(current)
+                    new_view = self.return_dir(file_struct, new_path) if len(current) != 0 else file_struct
+                    break
                 else:
                     try:
-                        file_path_keys.append(command[1])
-                        current_dir = "/" + "/".join(file_path_keys)
-                        current_contents = current_contents[command[1]]
+                        new_path.append(line)
+                        new_view = self.return_dir(file_struct, new_path) if len(current) != 0 else file_struct
+                        break
                     except:
-                        file_path_keys.pop()
-                        current_dir = "/" + "/".join(file_path_keys)
+                        new_path.pop()
                         print("Directory not found!")
+                        break
             except:
                 print("Invalid changedir command!")
