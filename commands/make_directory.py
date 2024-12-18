@@ -1,4 +1,4 @@
-from base_command import Command
+from commands.base_command import Command
 import copy
 
 class MakeDirectory(Command):
@@ -27,7 +27,8 @@ class MakeDirectory(Command):
                     if len(copied_keys) > 0:
                         self.update_dir(file_struct, copied_keys, line)
                     else:
-                        file_struct.update({line: {}})
+                        new_struct.update({line: {}})
+                    break
                 except Exception as err:
                     print(err)
                     print("Invalid command input!")

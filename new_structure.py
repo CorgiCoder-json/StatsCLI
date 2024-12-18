@@ -17,12 +17,17 @@ def run_command(commands_list, command_str, file_struct, current):
 if __name__ == "__main__":
     file_sys = {}
     file_key_path = []
-    commands = [MakeDirectory(["makedir", "mkdir", "mk"], [])]
+    commands = [MakeDirectory(["makedir", "mkdir", "mk"], []), ChangeDirectory(["changedir", "cd"], [])]
     user_in = ""
+    struct = file_sys
+    path = file_key_path
     while True:
+        print(struct)
+        print(path)
         user_in = input("Enter command: ").split()
         if user_in[0] == "q":
             break
-        run_command(commands, user_in, file_sys, file_key_path)
-        print(file_sys)
+        struct, path = run_command(commands, user_in, file_sys, file_key_path)
+        print(struct)
+        print(path)
     

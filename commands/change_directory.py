@@ -1,4 +1,4 @@
-from base_command import Command
+from commands.base_command import Command
 import copy
 
 class ChangeDirectory(Command):
@@ -32,3 +32,4 @@ class ChangeDirectory(Command):
                         break
             except:
                 print("Invalid changedir command!")
+        return new_view, new_path
