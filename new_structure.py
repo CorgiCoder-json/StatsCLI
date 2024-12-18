@@ -15,7 +15,6 @@ def run_command(commands_list, command_str, file_struct, current):
     for command in commands_list:
         try:
             new_file_struct, new_key_path = command.interpret(command_str, file_struct, current)
-            
             break
         except ValueError as err:
             continue
@@ -31,12 +30,12 @@ if __name__ == "__main__":
     struct = file_sys
     path = file_key_path
     while True:
-        print(struct)
-        print(path)
         user_in = input("Enter command: ").split()
         if user_in[0] == "q":
             break
         struct, path = run_command(commands, user_in, file_sys, file_key_path)
-        print(struct)
-        print(path)
+        file_sys = struct
+        file_key_path = path
+        print(file_sys)
+        print(file_key_path)
     
