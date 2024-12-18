@@ -15,7 +15,12 @@ class ChangeDirectory(Command):
     
     def interpret(self, command_str, file_struct, current):
         new_path = copy.deepcopy(current)
+        if command_str[0] not in self.alias:
+            raise ValueError("Command is not here!")
         for line in command_str[1:]:
+            if line[0] == '-' and len(self.subcommands) != 0:
+                if line not in self.subcommands:
+                    raise TypeError("Command is formatted wrong! " + line + " sub command does not exsist!")
             try:
                 if line == "<-":
                     current.pop()
