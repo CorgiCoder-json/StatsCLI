@@ -14,7 +14,6 @@ class MakeDirectory(Command):
         return self.update_dir(next_set, keys, new_dir)
     def interpret(self, command_str, file_struct, key_path):
         new_struct = file_struct
-        new_key_path = key_path
         if command_str[0] not in self.alias:
             raise ValueError("Command is not here!")
         for line in command_str[1:]:
@@ -32,4 +31,4 @@ class MakeDirectory(Command):
                 except Exception as err:
                     print(err)
                     print("Invalid command input!")
-        return new_struct, new_key_path
+        return new_struct, key_path

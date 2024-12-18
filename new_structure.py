@@ -2,12 +2,21 @@ import copy
 from commands.make_directory import MakeDirectory
 from commands.change_directory import ChangeDirectory
 
+def return_dir(self, file_dict, keys):
+        if len(keys) == 1 or len(file_dict[keys[0]].keys()) == 0:
+            return file_dict[keys[0]]
+        next_set = file_dict[keys[0]]
+        keys.pop(0)
+        return self.return_dir(next_set, keys)
+
 def run_command(commands_list, command_str, file_struct, current):
     new_file_struct = {}
     new_current_dir = current
     for command in commands_list:
         try:
             new_file_struct, new_key_path = command.interpret(command_str, file_struct, current)
+            
+            break
         except ValueError as err:
             continue
         except TypeError as err:
