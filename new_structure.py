@@ -1,6 +1,6 @@
 import copy
 from commands.make_directory import MakeDirectory
-
+from commands.change_directory import ChangeDirectory
 
 def run_command(commands_list, command_str, file_struct, current):
     new_file_struct = {}
@@ -25,3 +25,4 @@ if __name__ == "__main__":
             break
         run_command(commands, user_in, file_sys, file_key_path)
         print(file_sys)
+    
