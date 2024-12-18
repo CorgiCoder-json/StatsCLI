@@ -17,11 +17,11 @@ python3 new_structure.py
 
 For now, it acts like a simple file system, being able to move, create and list directories. The table below should help explain commands until a help module is setup
 
-| command | alias | sub commands | arguments | what it does |
-| Make Directory | makedir, mkdir, mk | None | name of the new directory | Creates a directory in the file system |
-| Change Directory | changedir, cd | None | name of the directory to change to | Changes the current directory to the specified one |
-| List Directory | listdir, ls | None | None | Lists all of the possible items in the current directory | 
-
+| Commands    | Alias | Sub commands | arguments | result | 
+| :---        |    :----:   |      :---: | :----: | :----: |
+| Make Directory | makedir, mkdir, mk | None | new directory name | Creates a new directory in the current directory |
+| Change Directory | changedir, cd | None | directory name | changes the current directory to the one specified |
+| List Directory | listdir, ls | None | None | lists all of the items inside the current directory 
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
