@@ -14,7 +14,7 @@ def run_command(commands_list, command_str, file_struct, current):
     new_current_dir = current
     for command in commands_list:
         try:
-            new_file_struct, new_key_path = command.interpret(command_str, file_struct, current)
+            new_file_struct, new_current_dir = command.interpret(command_str, file_struct, current)
             break
         except ValueError as err:
             continue

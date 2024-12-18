@@ -14,7 +14,7 @@ class ChangeDirectory(Command):
         return self.return_dir(next_set, keys)
     
     def interpret(self, command_str, file_struct, current):
-        new_path = current
+        new_path = copy.deepcopy(current)
         for line in command_str[1:]:
             try:
                 if line == "<-":
@@ -24,7 +24,8 @@ class ChangeDirectory(Command):
                 else:
                     try:
                         new_path.append(line)
-                        view = self.get_current_view(file_struct, current)
+                        view = self.get_current_view(file_struct, current) if len(current) != 0 else file_struct
+                        valid = view[line]
                         break
                     except:
                         new_path.pop()
