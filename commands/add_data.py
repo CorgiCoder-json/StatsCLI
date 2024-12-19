@@ -16,20 +16,21 @@ class AddData(Command):
     
     def interpret(self, command_str, file_struct, current):
         new_path = copy.deepcopy(current)
-        assigned_data = []
         try:
             view = self.get_current_view(file_struct, new_path) if len(current) != 0 else file_struct
         except:
             print("Something went wrong when trying to get the view!")
-        view.update({"data": []}) 
+        if "data" not in list(view.keys()):
+            view.update({"data": []}) 
         if command_str[0] not in self.alias:
             raise ValueError("Command is not here!")
         for line in command_str[1:]:
             if line[0] == '-' and len(self.subcommands) != 0:
                 if line not in self.subcommands:
                     raise TypeError("Command is formatted wrong! " + line + " sub command does not exsist!")
-            try:
-                view["data"].append(self.data_convert[command_str[1]])
-            except:
-                print("Something went wrong!")
+            else:
+                try:
+                    view["data"].append(self.data_convert[command_str[1]](line))
+                except:
+                    print("Something went wrong!")
         return file_struct, new_path

@@ -2,6 +2,7 @@ import copy
 from commands.make_directory import MakeDirectory
 from commands.change_directory import ChangeDirectory
 from commands.list_directory import ListDirectory
+from commands.add_data import AddData
 
 def return_dir(self, file_dict, keys):
         if len(keys) == 1 or len(file_dict[keys[0]].keys()) == 0:
@@ -26,7 +27,8 @@ def run_command(commands_list, command_str, file_struct, current):
 if __name__ == "__main__":
     file_sys = {}
     file_key_path = []
-    commands = [MakeDirectory(["makedir", "mkdir", "mk"], []), ChangeDirectory(["changedir", "cd"], []), ListDirectory(["listdir", "ls"], [])]
+    commands = [MakeDirectory(["makedir", "mkdir", "mk"], []), ChangeDirectory(["changedir", "cd"], []), 
+                ListDirectory(["listdir", "ls"], []), AddData(["add", "apply"], ["-i", "-f", "-b", "-s"])]
     user_in = ""
     struct = file_sys
     path = file_key_path
