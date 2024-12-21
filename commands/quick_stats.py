@@ -34,20 +34,12 @@ class QuickStats(Command):
     def interpret(self, command_str, file_struct, current):
         if command_str[0] not in self.alias:
             raise ValueError("Command is not here!")
-        if len(command_str[1:]) == 0:
-            try:
-                view = self.get_current_view(file_struct, current) if len(current) != 0 else file_struct
-                print(list(view.keys()))
-            except:
-                print("Something went wrong!")
         for line in command_str[1:]:
             if line[0] == '-' and len(self.subcommands) != 0:
                 if line not in self.subcommands:
                     raise TypeError("Command is formatted wrong! " + line + " sub command does not exsist!")
             try:
                 view = self.get_current_view(file_struct, current) if len(current) != 0 else file_struct
-                print("Inside List Dir!!!")
-                print(list(view.keys()))
             except:
                 print("Something went wrong!")
         return file_struct, current
